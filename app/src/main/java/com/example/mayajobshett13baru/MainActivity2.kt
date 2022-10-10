@@ -1,36 +1,27 @@
 package com.example.mayajobshett13baru
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.widget.TextView
+
 
 class MainActivity2 : AppCompatActivity() {
-    private lateinit var namaEdit: EditText
-    private lateinit var kelasEdit: EditText
-    private lateinit var nisEdit: EditText
-    private lateinit var submitBtn: Button
-
-    private val NAME_KEY: String = "nama"
-    private val KELAS_KEY: String = "kelas"
-    private val NIS_KEY: String = "nis"
+    private lateinit var namaView: TextView
+    private lateinit var kelasView: TextView
+    private lateinit var nisView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        namaEdit = findViewById(R.id.namaEdit)
-        kelasEdit = findViewById(R.id.kelasEdit)
-        nisEdit = findViewById(R.id.NisEdit)
-        submitBtn = findViewById(R.id.submitBtn)
+        namaView = findViewById(R.id.namaView)
+        kelasView = findViewById(R.id.kelasView)
+        nisView = findViewById(R.id.nisView)
 
-        submitBtn.setOnClickListener {
-            intent = Intent(this, MainActivity2::class.java)
-            intent.putExtra(NAME_KEY, namaEdit.text.toString())
-            intent.putExtra(KELAS_KEY, kelasEdit.text.toString())
-            intent.putExtra(NIS_KEY, nisEdit.text.toString())
-            startActivity(intent)
-        }
+        val extras = intent.extras
+
+        namaView.text = extras?.getString("nama")
+        kelasView.text = extras?.getString("kelas")
+        nisView.text = extras?.getString("nis")
     }
 }
